@@ -2,7 +2,7 @@ from flask import jsonify
 from decimal import Decimal
 import pymysql
 
-def query(querystr):
+def query(querystr,return_json=True):
     connection=pymysql.connect( host='localhost',
     user='sairaam',
     password='Sairam#99',
@@ -15,7 +15,10 @@ def query(querystr):
     connection.commit()
     cursor.close()
     connection.close()
-    return jsonify(result)
+    if return_json:
+        return jsonify(result)
+    else:
+        return result
 
 def encode(data):
     for row in data:
