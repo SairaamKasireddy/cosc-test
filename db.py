@@ -3,11 +3,11 @@ from decimal import Decimal
 import pymysql
 
 def query(querystr,return_json=True):
-    connection=pymysql.connect( host='localhost',
-    user='sairaam',
-    password='Sairam#99',
-    db='testapi',
-    cursorclass=pymysql.cursors.DictCursor )
+    connection=pymysql.connect( host='cosc-skillup.cxgok3weok8n.ap-south-1.rds.amazonaws.com',
+                                user='admin',
+                                password='coscskillup',
+                                db='testapi',
+                                cursorclass=pymysql.cursors.DictCursor )
     connection.begin()
     cursor=connection.cursor()
     cursor.execute(querystr)
@@ -26,3 +26,5 @@ def encode(data):
             if isinstance(value,Decimal):
                 row[key]=str(value)            
     return data
+
+#print(query("""SELECT * FROM emp;""",False))
